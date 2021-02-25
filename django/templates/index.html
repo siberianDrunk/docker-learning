@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="fullPage">
+
+    <div class="section" id="section0">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-sm d-flex justify-content-center align-content-center">
+                    <h4 class="main-text text-center text-justify"> Эволюция студентика СФУ</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm d-flex justify-content-center align-content-center mt-4">
+                    <img class="main head-img" align="center" src="{% static 'img/1 студентик.png' %}">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    {% for i in directions %}
+
+
+        <div class ="section" id="section{{ i.importance }}">
+
+            <div class="slide" >
+                <div class="row">
+                    <div class="col-sm text-center ">
+                        <h1>{{ i.title }}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <button class="btn" id="start"> <i class="fa fa-fast-forward"> Старт </i></button>
+                    </div>
+                </div>
+            </div>
+
+    {% for j in grade%}
+
+
+        {% if j.Direction == i %}
+
+            <div class ="slide">
+                <div class="container" >
+                    <div class="row">
+                        <div  class=" col-sm d-flex justify-content-center align-content-center ">
+                            <img class="main"  src="{{ j.img.url }}">
+                        </div>
+                    </div>
+                    <div class="progress bg-transparent" style="margin-bottom: 10px">
+                        <div class="progress-bar bg-dark" role="progressbar"  style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm text-center animated "  >
+                            <button type="button" class="btn border border-dark " data-toggle="modal" data-target="#exampleModalCenter{{ j.id }}">
+                                <span class="main-font ">{{ j.title }}</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm text-center is-animated-buttons" >
+                            <button  class="main-arrow btn  left "  id="moveLeft" style="font-size: 25px"> <i  class="fa fa-arrow-circle-left"></i></button>
+                            <button  class="main-arrow btn is-animated-button" id="moveRight" style="font-size: 25px"> <i class="fa fa-arrow-circle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+ </div>
+{% endfor %}
+
+<div class="section" id="section8">
+    <div class="container">
+         <div class="row">
+         <div class="col-sm d-flex justify-content-center align-content-center mt-4">
+    <img class="main footer-img" align="center" src="{% static 'img/41 КОНЕЦ.png' %}">
+             </div>
+     </div>
+</div>
+</div>
+
+</div>
+
+
+{% for i in grade %}
+<div class="modal fade" id="exampleModalCenter{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{i.title}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{ i.desc }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
