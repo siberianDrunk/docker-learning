@@ -9,13 +9,13 @@ services:
     env_file:
       - ./django/env/.env
     tty: 'true'
-    depends_on:
-      - vue
   vue:
     build:
       context: ./
       dockerfile: vue/Dockerfile.prod
     ports:
       - "80:80"
+    depends_on:
+      - rest
 
 
