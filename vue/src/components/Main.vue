@@ -109,11 +109,11 @@
 
       getApiData: function () {
         axios.all([
-          axios.get(`http://localhost:${process.env.API_PORT}/api/grades/`)
+          axios.get(`http://backend:${process.env.API_PORT}/api/grades/`)
             .then( response => {
               this.grades = response.data
             }),
-          axios.get(`http://localhost:${process.env.API_PORT}/api/directions/`)
+          axios.get(`http://backend:${process.env.API_PORT}/api/directions/`)
             .then( response => {
               this.directions = response.data
             }),
@@ -128,7 +128,7 @@
               this.directions = [];
               setTimeout(()=> {
                 console.log('Retry to connect API');this.getApiData()
-              }, 1500)
+              }, 5000)
             }
           })}, 300)
       },
