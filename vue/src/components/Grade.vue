@@ -39,7 +39,7 @@
       },
       methods : {
            getApiData: function () {
-        axios.get(`http://0.0.0.0:${process.env.API_PORT}/api/grades/`+ this.$route.params.id + '/')
+        axios.get(`http://localhost:${process.env.API_PORT}/api/grades/`+ this.$route.params.id + '/')
           .then( response => {
             this.grade = response.data
           });
