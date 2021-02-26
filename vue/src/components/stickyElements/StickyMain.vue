@@ -113,11 +113,11 @@
       },
       getApiData: function () {
         axios.all([
-          axios.get(`http://localhost:${process.env.API_PORT}/api/grades/`)
+          axios.get(`/api/grades/`)
             .then(response => {
               this.grades = response.data
             }),
-          axios.get(`http://localhost:${process.env.API_PORT}/api/directions/`)
+          axios.get(`/api/directions/`)
             .then(response => {
               this.directions = response.data
             }),
